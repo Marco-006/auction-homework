@@ -8,7 +8,14 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import "hardhat/console.sol";
 
-
+/**
+ * 项目流程介绍  
+ *  placeBid是从msg.sender转入token到合约：transferFrom(msg.sender, this);
+ *  endAuction就是从合约转出token到seller：transferFrom(this, seller)；
+ * @title 
+ * @author 
+ * @notice 
+ */
 
 contract NFTAuctionV5 is Initializable {
 
