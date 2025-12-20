@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\NFTAuctionV5.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> NFTAuctionV5.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75.86% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>44/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.46% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>10/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.94% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>53/68</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+pragma solidity ^0.8;
+&nbsp;
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+// Initializable 就是“可升级合约的构造函数锁”，保证初始化函数只能被执行一次，防止被恶意重放。
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+import "hardhat/console.sol";
+&nbsp;
+&nbsp;
+&nbsp;
+contract NFTAuctionV5 is Initializable {
+&nbsp;
+    struct Auction {
+        address seller;
+        uint256 duration;
+        uint256 startPrice;
+        uint256 startTime;
+        bool ended;
+        address highestBidder;
+        uint256 highestBid;
+        address nftContract;
+        uint256 tokenId;
+        // 参与竞价的资产类型 0x 地址表示eth，其他地址表示erc20
+        // 0x0000000000000000000000000000000000000000 表示eth
+        address tokenAddress;   
+    }
+&nbsp;
+    mapping(uint256 =&gt; Auction) public auctions;
+    uint256 public nextAuctionId;
+    // 管理员地址
+    address public admin;
+    
+    mapping (address =&gt; AggregatorV3Interface) public priceFeeds;
+&nbsp;
+&nbsp;
+    // 初始化函数，替代构造函数
+    function initialize() public <span class="missing-if-branch" title="else path not taken" >E</span>initializer {
+        admin = msg.sender;
+    }
+&nbsp;
+    // 拍卖流程1： 创建拍卖
+    function createAuction(
+        address _nftContract,
+        uint256 _tokenId,
+        uint256 _duration,
+        uint256 _startPrice
+    ) public {
+        // 每一个拍卖对应一个NFT，所以需要把NFT转移到拍卖合约中
+        // TODO: approval 检查
+        IERC721(_nftContract).transferFrom(
+            msg.sender,
+            address(this),
+            _tokenId
+        );
+        auctions[nextAuctionId] = Auction({
+            seller: msg.sender,
+            duration: _duration,
+            startPrice: _startPrice,
+            startTime: block.timestamp,
+            ended: false,
+            highestBidder: address(0),
+            highestBid: 0,
+            nftContract: _nftContract,
+            tokenId: _tokenId,
+            tokenAddress: address(0)
+        });
+        nextAuctionId++;
+&nbsp;
+        // console.log("createAuction...", );
+    }
+&nbsp;
+    // 拍卖流程2： 出价: 判断有效性，退还之前最高出价者，接受新出价
+    // 必传参数 nft address, bid amount, 
+    // 针对ERC721的选填参数： tokenAddresserc20;
+    function placeBid(
+        uint256 _auctionId,
+        uint256 amount,
+        address _tokenAddress
+    ) external payable {
+        console.log("placeBid...1...");
+        Auction storage auction = auctions[_auctionId];
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            block.timestamp &lt;= auction.startTime + auction.duration,
+            "Auction already ended"
+        );
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(amount &gt;= auction.highestBid, "There already is a higher bid");
+&nbsp;
+        
+        console.log("placeBid...2...");
+        // 兑换不同类型资产，校验价格
+        uint256 payValue ;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (auction.tokenAddress == address(0)) {
+            console.log("placeBid...2...ETH");
+&nbsp;
+            // 处理 ETH            
+            payValue = amount * uint(getChainlinkDataFeedLatestAnswer(address(0)));
+            console.log("payValue...ETH...", payValue);
+        }else{
+<span class="cstat-no" title="statement not covered" >            console.log("_tokenAddress....", _tokenAddress)</span>;
+            payValue = amount * uint(getChainlinkDataFeedLatestAnswer(_tokenAddress));
+<span class="cstat-no" title="statement not covered" >            console.log("payValue...other...", payValue)</span>;
+        }
+&nbsp;
+        console.log("auction.tokenAddress....",auction.tokenAddress);
+        uint256 startPriceValue = auction.startPrice * 
+            uint(getChainlinkDataFeedLatestAnswer(auction.tokenAddress));
+        uint256 highestBidValue = auction.highestBid * 
+            uint(getChainlinkDataFeedLatestAnswer(auction.tokenAddress));
+&nbsp;
+        console.log("startPriceValue...",startPriceValue);
+        console.log("highestBidValue...",highestBidValue);    
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(payValue &gt;= startPriceValue &amp;&amp; payValue &gt; highestBidValue, "payValue is too low");
+&nbsp;
+        // 如果之前有出价，退还之前最高出价者的资金
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (auction.highestBidder != address(0)) {
+             // 以太币退款
+<span class="cstat-no" title="statement not covered" >            if (auction.tokenAddress == address(0)) {               </span>
+<span class="cstat-no" title="statement not covered" >                payable(auction.highestBidder).transfer(auction.highestBid)</span>;
+            } else {
+                // ERC20退款
+<span class="cstat-no" title="statement not covered" >                IERC20(auction.tokenAddress).transferFrom(</span>
+                    address(this),
+                    auction.highestBidder,
+                    auction.highestBid
+                );
+            }
+        }
+&nbsp;
+        // 接受新的出价
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (_tokenAddress == address(0)) {
+            // 以太币出价
+<span class="cstat-no" title="statement not covered" >            console.log("msg.value :", msg.value)</span>;
+<span class="cstat-no" title="statement not covered" >            console.log("amount :", amount)</span>;
+<span class="cstat-no" title="statement not covered" >            require(msg.value == amount, "Sent ether value does not match bid amount")</span>;
+            // TODO ETH需要做什么接受吗？
+        } else {
+            // ERC20出价
+            IERC20(_tokenAddress).transferFrom(
+                msg.sender,
+                address(this),
+                amount
+            );
+            uint256 currentAmount = IERC20(_tokenAddress).balanceOf(address(this));
+            console.log("placeBid currentAmount...", currentAmount);
+        }
+&nbsp;
+        // 记录到拍卖合约中
+        auction.highestBidder = msg.sender;
+        auction.highestBid = amount;
+        // 更新参与交易的资产类型，默认为0--ETH
+        auction.tokenAddress = _tokenAddress;
+    }
+    
+    // 拍卖流程3：结束拍卖 : 转移NFT给最高出价者，转移资金给卖家
+    function endAuction(uint256 _auctionId) external {
+        console.log("endAuction... start...");
+        Auction storage auction = auctions[_auctionId];
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(msg.sender == auction.seller, "Only seller can end auction");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            !auction.ended &amp;&amp;
+                auction.startTime + auction.duration &lt;= block.timestamp,
+            "Auction not yet ended"
+        );
+        // 转移NFT给最高出价者
+        IERC721(auction.nftContract).safeTransferFrom(
+            address(this),
+            auction.highestBidder,
+            auction.tokenId
+        );
+        console.log("endAuction... 1...");
+&nbsp;
+        // 转移资金给卖家
+    //    console.log("转移资金给卖家...");
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (auction.tokenAddress == address(0)) {   
+<span class="cstat-no" title="statement not covered" >            console.log("auction.seller :", auction.seller)</span>;
+<span class="cstat-no" title="statement not covered" >            console.log("auction.highestBid :", auction.highestBid)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log("address(this).balance: ", address(this).balance)</span>;
+            // 以太币支付
+            // payable(auction.seller).transfer(auction.highestBid);
+<span class="cstat-no" title="statement not covered" >            (bool success, ) = payable(auction.seller).call{value: auction.highestBid}("");</span>
+<span class="cstat-no" title="statement not covered" >            require(success, "Transfer failed")</span>;
+<span class="cstat-no" title="statement not covered" >            console.log("endAuction... 2-1...")</span>;
+        } else {
+            // ERC20支付
+            console.log("from...",address(this));
+            console.log("auction.seller...", auction.seller);
+            console.log("auction.tokenAddress...", auction.tokenAddress);
+&nbsp;
+            // 余额
+            uint256 currentAmount = IERC20(auction.tokenAddress).balanceOf(address(this));
+            console.log("endAuction currentAmount...", currentAmount);
+            // 授权额度
+            console.log("auction.highestBidder...", auction.highestBidder);
+            uint256 allowed = IERC20(auction.tokenAddress).allowance(auction.highestBidder, address(this));
+&nbsp;
+            console.log("endAuction allowed...", allowed);
+&nbsp;
+            // IERC20(auction.tokenAddress).transferFrom(
+            //     address(this),
+            //     auction.seller,
+            //     auction.highestBid
+            // );
+&nbsp;
+            IERC20(auction.tokenAddress).transfer(
+                auction.seller,
+                auction.highestBid
+            );
+            console.log("endAuction... 2-2...");
+        }
+        auction.ended = true;
+        console.log("endAuction... end...");
+&nbsp;
+        console.log("endAuction... end...", auction.ended);
+    }
+&nbsp;
+&nbsp;
+    
+    function setPriceFeed(
+        address tokenAddress,
+        address _priceFeed
+    ) public {
+        priceFeeds[tokenAddress] = AggregatorV3Interface(_priceFeed);
+    }
+&nbsp;
+    /**
+     * Returns the latest answer.
+    */
+  function getChainlinkDataFeedLatestAnswer(address tokenAddress) public view returns (int256) {
+    AggregatorV3Interface priceFeed = priceFeeds[tokenAddress];
+    console.log("tokenAddress: ", tokenAddress);
+&nbsp;
+    // prettier-ignore
+    (
+      /* uint80 roundId */
+      ,
+      int256 answer,
+      /*uint256 startedAt*/
+      ,
+      /*uint256 updatedAt*/
+      ,
+      /*uint80 answeredInRound*/
+    ) = priceFeed.latestRoundData();
+    
+    return answer;
+  }
+&nbsp;
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Dec 20 2025 20:02:10 GMT+0800 (中国标准时间)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

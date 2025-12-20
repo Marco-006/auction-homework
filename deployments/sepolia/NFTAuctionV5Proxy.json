@@ -1,0 +1,19 @@
+{
+  "address": "0x523e3a52dABe33c131D5d149e773Ab2a9635c96D",
+  "abi": [
+    "error InvalidInitialization()",
+    "error NotInitializing()",
+    "event Initialized(uint64)",
+    "function admin() view returns (address)",
+    "function auctions(uint256) view returns (address,uint256,uint256,uint256,bool,address,uint256,address,uint256,address)",
+    "function createAuction(address,uint256,uint256,uint256)",
+    "function endAuction(uint256)",
+    "function getChainlinkDataFeedLatestAnswer(address) view returns (int256)",
+    "function initialize()",
+    "function nextAuctionId() view returns (uint256)",
+    "function placeBid(uint256,uint256,address) payable",
+    "function priceFeeds(address) view returns (address)",
+    "function setPriceFeed(address,address)"
+  ],
+  "numDeployments": 4
+}
