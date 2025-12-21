@@ -12,7 +12,7 @@ module.exports = async () => {
     const NFTAuctionV5 = await ethers.getContractFactory("NFTAuctionV5");
 
     // 通过代理合约部署可升级合约
-    const NFTAuctionV5Proxy = await upgrades.deployProxy(NFTAuctionV5, [], {
+    const NFTAuctionV5Proxy = await upgrades.deployProxy(NFTAuctionV5, [deployer.address], {
         initializer: 'initialize',
       });
 

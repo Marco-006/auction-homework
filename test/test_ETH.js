@@ -41,8 +41,30 @@ describe("End-to-End Test for NftAuctionV5", function () {
         );
         await createAuctionTx.wait();
 
-        const auction0 = await nftAuctionV5Instance.auctions(0);
-
+         // price feed
+         const aggreagatorV3 = await ethers.getContractFactory("AggregatorV3");
+         const priceFeedEthDeploy = await aggreagatorV3.deploy(ethers.parseEther("10000"));
+         const priceFeedEth = await priceFeedEthDeploy.waitForDeployment();
+         const priceFeedEthAddress = await priceFeedEth.getAddress();
+         console.log("priceFeedEthAddress...", priceFeedEthAddress);
+ 
+   
+ 
+         const token2Usd = [
+             {
+                 token: ethers.ZeroAddress,
+                 usdAddress: priceFeedEthAddress
+             },
+            //  {
+            //      token: UsdcAddress,
+            //      usdAddress: priceFeedEthAddress
+            //  }
+         ]
+ 
+         for (let index = 0; index < token2Usd.length; index++) {
+             const { token, usdAddress }  = token2Usd[index];
+             await nftAuctionV5Instance.setPriceFeed(token, usdAddress);
+         } 
         // 出价
         // ETH参与竞价
         const bidTx1 = await nftAuctionV5Instance.connect(bidder1).placeBid(0, ethers.parseEther("1.5"), ethers.ZeroAddress, { value: ethers.parseEther("1.5") });

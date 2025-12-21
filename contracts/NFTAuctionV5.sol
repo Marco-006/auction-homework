@@ -7,6 +7,8 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 /**
  * 项目流程介绍  
@@ -17,7 +19,7 @@ import "hardhat/console.sol";
  * @notice 
  */
 
-contract NFTAuctionV5 is Initializable {
+contract NFTAuctionV5 is Initializable, OwnableUpgradeable {
 
     struct Auction {
         address seller;
@@ -41,10 +43,15 @@ contract NFTAuctionV5 is Initializable {
     
     mapping (address => AggregatorV3Interface) public priceFeeds;
 
+      /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();   // 阻止在实现合约上直接调用 initialize
+    }
 
     // 初始化函数，替代构造函数
-    function initialize() public initializer {
+    function initialize(address initialOwner) public initializer {
         admin = msg.sender;
+        __Ownable_init(initialOwner);   // 把 initialOwner 设为管理员
     }
 
     // 拍卖流程1： 创建拍卖
@@ -163,7 +170,6 @@ contract NFTAuctionV5 is Initializable {
         );
 
         // 转移资金给卖家
-    //    console.log("转移资金给卖家...");
         if (auction.tokenAddress == address(0)) {   
             // 以太币支付
             // payable(auction.seller).transfer(auction.highestBid);
@@ -190,7 +196,7 @@ contract NFTAuctionV5 is Initializable {
     function setPriceFeed(
         address tokenAddress,
         address _priceFeed
-    ) public {
+    ) public onlyOwner {
         priceFeeds[tokenAddress] = AggregatorV3Interface(_priceFeed);
     }
 
@@ -199,8 +205,6 @@ contract NFTAuctionV5 is Initializable {
     */
   function getChainlinkDataFeedLatestAnswer(address tokenAddress) public view returns (int256) {
     AggregatorV3Interface priceFeed = priceFeeds[tokenAddress];
-    console.log("tokenAddress: ", tokenAddress);
-
     // prettier-ignore
     (
       /* uint80 roundId */
