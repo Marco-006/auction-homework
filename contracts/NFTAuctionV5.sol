@@ -156,7 +156,6 @@ contract NFTAuctionV5 is Initializable, OwnableUpgradeable {
     // 拍卖流程3：结束拍卖 : 转移NFT给最高出价者，转移资金给卖家
     function endAuction(uint256 _auctionId) external {
         Auction storage auction = auctions[_auctionId];
-        require(msg.sender == auction.seller, "Only seller can end auction");
         require(
             !auction.ended &&
                 auction.startTime + auction.duration <= block.timestamp,
