@@ -86,7 +86,6 @@ contract NFTAuctionV5 is Initializable {
         uint256 amount,
         address _tokenAddress
     ) external payable {
-        console.log("placeBid...1...");
         Auction storage auction = auctions[_auctionId];
         require(
             block.timestamp <= auction.startTime + auction.duration,
@@ -94,30 +93,19 @@ contract NFTAuctionV5 is Initializable {
         );
         require(amount >= auction.highestBid, "There already is a higher bid");
 
-        
-        console.log("placeBid...2...");
-        // 兑换不同类型资产，校验价格
+                // 兑换不同类型资产，校验价格
         uint256 payValue ;
         if (auction.tokenAddress == address(0)) {
-            console.log("placeBid...2...ETH");
-
             // 处理 ETH            
             payValue = amount * uint(getChainlinkDataFeedLatestAnswer(address(0)));
-            console.log("payValue...ETH...", payValue);
         }else{
-            console.log("_tokenAddress....", _tokenAddress);
             payValue = amount * uint(getChainlinkDataFeedLatestAnswer(_tokenAddress));
-            console.log("payValue...other...", payValue);
         }
 
-        console.log("auction.tokenAddress....",auction.tokenAddress);
         uint256 startPriceValue = auction.startPrice * 
             uint(getChainlinkDataFeedLatestAnswer(auction.tokenAddress));
         uint256 highestBidValue = auction.highestBid * 
-            uint(getChainlinkDataFeedLatestAnswer(auction.tokenAddress));
-
-        console.log("startPriceValue...",startPriceValue);
-        console.log("highestBidValue...",highestBidValue);    
+            uint(getChainlinkDataFeedLatestAnswer(auction.tokenAddress)); 
         require(payValue >= startPriceValue && payValue > highestBidValue, "payValue is too low");
 
         // 如果之前有出价，退还之前最高出价者的资金
@@ -138,8 +126,6 @@ contract NFTAuctionV5 is Initializable {
         // 接受新的出价
         if (_tokenAddress == address(0)) {
             // 以太币出价
-            console.log("msg.value :", msg.value);
-            console.log("amount :", amount);
             require(msg.value == amount, "Sent ether value does not match bid amount");
             // TODO ETH需要做什么接受吗？
         } else {
@@ -162,7 +148,6 @@ contract NFTAuctionV5 is Initializable {
     
     // 拍卖流程3：结束拍卖 : 转移NFT给最高出价者，转移资金给卖家
     function endAuction(uint256 _auctionId) external {
-        console.log("endAuction... start...");
         Auction storage auction = auctions[_auctionId];
         require(msg.sender == auction.seller, "Only seller can end auction");
         require(
@@ -176,35 +161,16 @@ contract NFTAuctionV5 is Initializable {
             auction.highestBidder,
             auction.tokenId
         );
-        console.log("endAuction... 1...");
 
         // 转移资金给卖家
     //    console.log("转移资金给卖家...");
         if (auction.tokenAddress == address(0)) {   
-            console.log("auction.seller :", auction.seller);
-            console.log("auction.highestBid :", auction.highestBid);
-
-            console.log("address(this).balance: ", address(this).balance);
             // 以太币支付
             // payable(auction.seller).transfer(auction.highestBid);
             (bool success, ) = payable(auction.seller).call{value: auction.highestBid}("");
             require(success, "Transfer failed");
-            console.log("endAuction... 2-1...");
         } else {
             // ERC20支付
-            console.log("from...",address(this));
-            console.log("auction.seller...", auction.seller);
-            console.log("auction.tokenAddress...", auction.tokenAddress);
-
-            // 余额
-            uint256 currentAmount = IERC20(auction.tokenAddress).balanceOf(address(this));
-            console.log("endAuction currentAmount...", currentAmount);
-            // 授权额度
-            console.log("auction.highestBidder...", auction.highestBidder);
-            uint256 allowed = IERC20(auction.tokenAddress).allowance(auction.highestBidder, address(this));
-
-            console.log("endAuction allowed...", allowed);
-
             // IERC20(auction.tokenAddress).transferFrom(
             //     address(this),
             //     auction.seller,
@@ -215,12 +181,8 @@ contract NFTAuctionV5 is Initializable {
                 auction.seller,
                 auction.highestBid
             );
-            console.log("endAuction... 2-2...");
         }
         auction.ended = true;
-        console.log("endAuction... end...");
-
-        console.log("endAuction... end...", auction.ended);
     }
 
 

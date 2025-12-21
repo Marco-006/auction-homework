@@ -112,7 +112,6 @@ describe("End-to-End Test for NftAuctionV5", function () {
         console.log("TestERC20 deployed at:", UsdcAddress);        
         let tx = await testERC20.connect(owner).transfer(bidder1, ethers.parseEther("1"))
         await tx.wait()
-        console.log("Bidder1 transfer USDC");
 
         // price feed
         const aggreagatorV3 = await ethers.getContractFactory("AggregatorV3");
