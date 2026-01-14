@@ -44,5 +44,8 @@ module.exports = async () => {
     });
 }
 
-// module.exports = deployNftAuctionV5;
+//  给这条部署脚本打标签，以后可以用 --tags deployNftAuction 单独跑它
+// 只有在“你需要把这条脚本从所有部署文件里单独拎出来执行”时，它才真正派上用场。
+// 1. npx hardhat deploy --tags deployNftAuction
+// 2. await deployments.fixture(["deployNftAuction"]);   // 只执行带这个标签的脚本
 module.exports.tags = ['NFTAuctionV5'];
