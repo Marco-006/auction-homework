@@ -22,7 +22,7 @@ describe("End-to-End Test for NftAuctionV5", function () {
 
 
         // 部署NFTAuctionV5合约 将ERC721合约地址传入
-        // await deployments.fixture(["NFTAuctionV5"]);
+        // deployments.fixture会把 Hardhat 本地网络回滚到最近一次“快照”，然后重新执行标签为 deployNftAuction 的那一组部署脚本
         await deployments.fixture(["NFTAuctionV5"]);
         const NFTAuctionV5Proxy = await deployments.get("NFTAuctionV5Proxy");
 

@@ -26,6 +26,7 @@ module.exports = async () => {
     // 保存部署信息，方便后续使用 hardhat-deploy 插件进行管理
     const storePath = path.resolve(__dirname, '../cache/proxyAuction.json');
 
+    // 把“代理地址 + 实现地址 + 合约 ABI”一起写进这个文件，方便前端或其他脚本读取
     fs.writeFileSync(
         storePath,
         JSON.stringify({
@@ -35,6 +36,8 @@ module.exports = async () => {
         }, null, 2)
     );
 
+    // hardhat-deploy 的 save 方法，把部署结果写进 deployments/xx.json 
+    // 这样以后可以用 deployments.get("NftAuctionProxy") 直接拿到地址和 ABI
     await save('NFTAuctionV5Proxy', {
         address: proxyAddress,
         abi: NFTAuctionV5Proxy.interface.format('json'),
